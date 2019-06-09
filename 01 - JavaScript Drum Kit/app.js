@@ -103,6 +103,5 @@ document.addEventListener('keypress', (e) => {
       });
       break;
     default:
-      console.log(upper);
   }
 });
