@@ -96,6 +96,38 @@
   </div>
 
 <script>
+  const boxes = Array.from(document.getElementsByTagName('input'));
+
+  window.addEventListener('keydown', e => {
+    if (e.keyCode === 16) {
+      let checked = [];
+      let checkedPos = [];
+      let shiftPos;
+      boxes.forEach((item, i) => {
+        item.id = `check-${i}`;
+        if (item.checked) {
+          checked.push(item)
+          checkedPos.push(i);
+        }
+      
+      });
+      document.addEventListener('click', e => {
+        if (e.target.type == 'checkbox') {
+          if (e.target.checked) {
+            shiftPos = Number(e.target.id.slice(-1));
+            boxes.forEach((item, i) => {
+              if (checkedPos[checkedPos.length-1] < i && i < shiftPos) {
+                item.checked = true;
+
+                console.log(checkedPos[checkedPos.length-1], shiftPos);
+              }
+            });
+          };
+        }
+      });
+      console.log(checked, checkedPos);
+    }
+  });
 </script>
 </body>
 </html>
